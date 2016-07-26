@@ -24,6 +24,8 @@ from matplotlib.figure import Figure
 from matplotlib.backends.backend_agg import FigureCanvasAgg
 from matplotlib.backend_bases import FigureCanvasBase
 
+from functools import reduce
+
 import numpy.ma as ma
 try:
     import pyautoplot.forkmap as forkmap
@@ -713,13 +715,13 @@ def collect_stats_ms(msname, max_mem_bytes=4*(2**30), first_timeslot=0, max_time
         pass
     
 
-    num_ts = min(max_ts, max(0,num_timeslots-first_timeslot))
+    num_ts = int64(min(max_ts, max(0,num_timeslots-first_timeslot)))
     data_shape  = (num_ant, num_ant, num_pol, num_ts, num_chan)
     data = ma.array(zeros(data_shape, dtype=complex64),
                     mask=zeros(data_shape, dtype=bool))
 
     ms_table = tables.table(ms.msname)
-    nrows = min(ms_table.nrows(), num_bl*num_ts)
+    nrows = int64(min(ms_table.nrows(), num_bl*num_ts))
     rows      = ms_table[0:nrows]
     xx,xy,yx,yy = 0,1,2,3
     printnow('reading data')
