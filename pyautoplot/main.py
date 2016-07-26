@@ -879,7 +879,7 @@ def inspect_ms(msname, ms_id, max_mem_bytes=4*(2**30), root=os.path.expanduser('
     # write_plot('Rate', lambda x:log10(abs(x)), vmin=-4, vmax=0.0, cmap=cmap)
 
     results_name=os.path.join(output_dir,msname.split('/')[-1][:-3]+'-data.pickle')
-    pickle.dump(results, open(results_name, mode='w'), protocol=pickle.HIGHEST_PROTOCOL)
+    pickle.dump(results, open(results_name, mode='wb'), protocol=pickle.HIGHEST_PROTOCOL)
 
     ms = MeasurementSetSummary(msname)
     time_slots, vis_cube = collect_timeseries_ms(ms, num_points=240)
