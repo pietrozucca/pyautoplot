@@ -24,9 +24,9 @@ from matplotlib.figure import Figure
 from matplotlib.backends.backend_agg import FigureCanvasAgg
 from matplotlib.backend_bases import FigureCanvasBase
 
+import numpy.ma as ma
 from functools import reduce
 
-import numpy.ma as ma
 try:
     import pyautoplot.forkmap as forkmap
     import pyautoplot.uvplane as uvplane
